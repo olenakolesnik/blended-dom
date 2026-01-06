@@ -143,6 +143,27 @@ const spanName = document.querySelector('.js-username-output');
 userNameInput.addEventListener('input', handleUserNameInput);
 form.addEventListener('submit', handleSubmit);
 userNameInput.addEventListener('input', handleChangeName);
+userNameInput.addEventListener('focus', handleFocus);
+userNameInput.addEventListener('blur', handleBlur);
+
+function handleBlur(event) {
+    const value = event.target.value.trim();
+    if (value === '') {
+        userNameInput.style.outline = '3px solid red';
+    } else {
+        userNameInput.style.outline = '3px solid lime';
+    }
+}
+
+
+function handleFocus(event) {
+    const value = event.target.value.trim();
+    if (value === '') {
+        userNameInput.style.outline = '3px solid red';
+    } else {
+        userNameInput.style.outline = '3px solid green';
+    }
+}
 
 
 
@@ -186,5 +207,26 @@ function handleChangeName(event) {
 
 // Task-4
 // Використовуй шаблон розмітки з файлу html та напиши наступний функціонал:
- // При кліку на кнопку "Зменшити" квадрат стає меньшим на 20 пікселів, 
- // При кліку на кнопку "Збільшити" - квадрат стає більшим на 20 пікселів.
+ // При кліку на кнопку "Зменшити" квадрат стає меньшим на 20 пікселів,
+// При кліку на кнопку "Збільшити" - квадрат стає більшим на 20 пікселів.
+ 
+const box = document.querySelector('.box');
+const decreaseBtn = document.querySelector('.js-decrease');
+const increaseBtn = document.querySelector('.js-increase');
+
+let size = box.offsetWidth;
+
+decreaseBtn.addEventListener('click', handleDecreaseBtn);
+increaseBtn.addEventListener('click', handleIncreaseBtn);
+
+function handleDecreaseBtn() {
+    size -= 20;
+    box.style.width = size + 'px';
+  box.style.height = size + 'px';
+}
+
+function handleIncreaseBtn() {
+    size += 20;
+    box.style.width = size + 'px';
+    box.style.height = size + 'px';
+}
